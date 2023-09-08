@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      width: 100vw;
+      height: 100%;
+      background-color:rgba(0, 255, 17, 0);
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 0;
+      color: rgb(0, 0, 0);
+    }
+
+    button {
+      background-color: #585858;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      width: 70%;
+    }
+
+    section {
+      padding-top: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Solucionador de Fórmulas Matemáticas</h1>
+  </header>
+
+  <section>
+    <button id="btnBhaskara">Resolver Bhaskara</button>
+    <button id="btnSomaeproduto">Soma e Produto</button>
+    <button id="btnPitagoras">Resolver Pitágoras</button>
+    <button id="btnCirculo">Calcular Círculo</button>
+    <button id="btnRegraTres">Regra de Três</button>
+  </section>
+
+  <script>
+    const PI = 3.14159;
+
+    function msgErro() {
+      alert("Valor inválido! Tente novamente.");
+    }
+
+    document.getElementById('btnBhaskara').addEventListener('click', function () {
+      calcularBhaskara();
+    });
+
+    document.getElementById('btnSomaeproduto').addEventListener('click', function () {
+      Somaeproduto();
+    });
+
+    document.getElementById('btnPitagoras').addEventListener('click', function () {
+      calcularHipotenusa();
+    });
+
+    document.getElementById('btnCirculo').addEventListener('click', function () {
+      calcularCirculo();
+    });
+
+    document.getElementById('btnRegraTres').addEventListener('click', function () {
+      calcularRegraDeTres();
+    });
+
+    function calcularBhaskara() {
+      var a = parseFloat(prompt("Ok, qual é o valor de a?"));
+      if (isNaN(a)) { return msgErro() }
+
+      var b = parseFloat(prompt("Beleza, agora qual seria o valor de b?"));
+      if (isNaN(b)) { return msgErro() }
+
+      var c = parseFloat(prompt("Perfeito, agora só falta o valor de c"));
+      if (isNaN(c)) { return msgErro() }
+
+      var d = b * b - 4 * a * c;
+      var x = (-b + Math.sqrt(d)) / (2 * a);
+      var y = (-b - Math.sqrt(d)) / (2 * a);
+
+      var resultado = "";
+      if (d < 0) {
+        resultado = `O valor do seu delta é ${d}, e como não existe raiz quadrada de número negativo, essa equação não possui solução real.`;
+      } else if (d > 0) {
+        resultado = `O valor do seu delta é ${d}. Existem dois resultados para a sua equação, e eles são: ${x} e ${y}`;
+      } else {
+        resultado = `O valor do seu delta é ${d}. Existe somente um resultado para a sua equação, e ele é: ${y}`;
+      }
+
+      alert(resultado);
+    }
+
+    function Somaeproduto() {
+      var a = parseFloat(prompt("Ok, qual é o valor de a?"));
+      if (isNaN(a)) { return msgErro() }
+
+      var b = parseFloat(prompt("Beleza, agora qual seria o valor de b?"));
+      if (isNaN(b)) { return msgErro() }
+
+      var c = parseFloat(prompt("Perfeito, agora só falta o valor de c"));
+      if (isNaN(c)) { return msgErro() }
+
+      var soma = -1 * (b / a);
+      var produto = c / a;
+      var resultado = `O valor da soma de de x1 e x2 é igual a: ${soma} \n O valor do produto entre x1 e x2 é igual a: ${produto}`;
+      alert(resultado);
+    }
+
+    function calcularHipotenusa() {
+      var c1 = parseFloat(prompt("Digite o valor do primeiro cateto:"));
+      if (isNaN(c1)) { return msgErro() }
+
+      var c2 = parseFloat(prompt("Digite o valor do segundo cateto:"));
+      if (isNaN(c2)) { return msgErro() }
+
+      var h = Math.sqrt(c1 * c1 + c2 * c2);
+
+      alert(`A hipotenusa vale: ${h.toFixed(2)}`);
+    }
+
+    function calcularCirculo() {
+      var raio = parseFloat(prompt("Digite o raio do círculo:"));
+      if (isNaN(raio)) { return msgErro() }
+
+      var area = PI * raio * raio;
+      var circunferencia = 2 * PI * raio;
+
+      alert(`A área do círculo é: ${area.toFixed(2)}\nA circunferência do círculo é: ${circunferencia.toFixed(2)}`);
+    }
+
+    function calcularRegraDeTres() {
+      var v1 = parseFloat(prompt("Digite o valor 1:"));
+      if (isNaN(v1)) { return msgErro() }
+
+      var v2 = parseFloat(prompt("Digite o valor 2:"));
+      if (isNaN(v2)) { return msgErro() }
+
+      var v3 = parseFloat(prompt("Digite o valor 3:"));
+      if (isNaN(v3)) { return msgErro() }
+
+      var resultado = (v3 * v2) / v1;
+
+      alert(`O resultado da regra de três é: ${resultado.toFixed(2)}`);
+    }
+  </script>
+</body>
+
+</html>
